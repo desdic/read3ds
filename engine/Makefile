@@ -3,14 +3,24 @@ CC=g++
 ## Linker
 LD=$(CC)
 ## Flags
-CPPDEBUG=-g -Wall -w -Wextra -Wpedantic
+CPPOPTIONS=-g -Wall -w -Wextra -Wpedantic
 #-pedantic
 # -pedantic  -pedantic-errors -w -Wextra
 #OPTIMIZE=-march=pentium4 -msse3
-CPPFLAGS = -O3 $(OPTIMIZE) $(CPPDEBUG) -DLINUX `sdl-config --cflags`
-LFLAGS = `sdl-config --libs` -lGL -lGLU -lSDL_image -lGLEW
 
-DEPEND=makedepend
+UNAME_S := $(shell uname -s)
+
+ifeq ($(UNAME_S),Linux)
+	CPPFLAGS = -O3 $(OPTIMIZE) $(CPPOPTIONS) -DLINUX `sdl-config --cflags`
+	LFLAGS = `sdl-config --libs` -lGL -lGLU -lSDL_image -lGLEW
+endif
+
+ifeq ($(UNAME_S),Darwin)
+	CPPFLAGS = -O3 $(OPTIMIZE) $(CPPOPTIONS) -DOSX `sdl-config --cflags`
+	LFLAGS = `sdl-config --libs` -framework OpenGL -lSDL_image -lGLEW
+endif
+
+DEPEND=gcc -M
 
 HEADERFILES = main.h ivector.h light.h material.h read3ds.h camera.h object.h iface.h mapping.h scene.h shader.h config.h exception.h
 OBJS = main.o drawing.o sjov.o texture.o read3ds.o material.o camera.o object.o scene.o shader.o config.o

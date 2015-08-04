@@ -1,8 +1,13 @@
 #ifndef __drawing_cc__
 #define __drawing_cc__
 
-#include <GL/gl.h>												
-#include <GL/glu.h>												
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 
 void ViewOrtho(int height, int width);
 void ViewPerspective();

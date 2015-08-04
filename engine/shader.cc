@@ -2,9 +2,16 @@
 #include <string.h>
 #include <stdio.h>
 #include <GL/glew.h>
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#include <OpenGL/glext.h>
+#else
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glext.h>
+#endif
 
 #include "shader.h"
 

@@ -7,8 +7,14 @@
 #include <stdlib.h>															// And The Standard Lib Header
 #endif																		// Then...
 
-#include <GL/gl.h>															// We're Including The OpenGL Header
-#include <GL/glu.h>															// And The GLu Header
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
+
 #include <SDL.h>															// And Of Course The SDL Header
 #include <iostream>
 

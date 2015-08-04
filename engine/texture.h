@@ -2,8 +2,14 @@
 #define __TEXTURE_H__
 
 #include <vector>
+
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
 #include <GL/gl.h>
 #include <GL/glu.h>
+#endif
 
 enum { 
     TEXTURE_SCALE=1, TEXTURE_MIPMAP=2, TEXTURE_ALPHA=4, TEXTURE_MODULATE=8, TEXTURE_REPLACE=16, TEXTURE_REPEAT=32
